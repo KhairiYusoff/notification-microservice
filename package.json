@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "lint": "eslint . --ext .js",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "jest --runInBand"
   },
   "author": "",
   "license": "MIT",
@@ -20,7 +21,9 @@
   },
   "devDependencies": {
     "eslint": "^8.51.0",
+    "jest": "^30.0.3",
     "nodemon": "^3.0.1",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "supertest": "^7.1.1"
   }
 }
