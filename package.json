@@ -4,8 +4,8 @@
   "description": "Modular notification microservice for banking and enterprise systems.",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
     "lint": "eslint . --ext .js",
     "format": "prettier --write .",
     "test": "jest --runInBand"
