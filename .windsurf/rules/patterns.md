@@ -9,6 +9,31 @@ Purpose: Single source of truth for coding patterns in this repo.
 - Prefer existing utilities/services over creating new ones.
 - Avoid broad rewrites for small feature/fix requests.
 
+## Commenting Standards
+
+**WHY > HOW: Focus on business reasoning, not code mechanics**
+
+- Explain security decisions and business rules
+- Comment non-obvious access control logic
+- Explain environment-specific choices
+- Avoid obvious comments about what code does
+
+**Good Examples:**
+
+```javascript
+// WHY: Admins need role-based access for audit compliance
+// WHY: API keys blocked from user data for privacy protection
+// WHY: Cross-domain cookies require sameSite:'none' + secure:true
+```
+
+**Avoid:**
+
+```javascript
+// Get user from database  // Obvious
+// Check if user exists  // Obvious
+// Loop through notifications  // Obvious
+```
+
 ## Validation Rules
 
 - Do final audit of all changes made.
