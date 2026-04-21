@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const notificationRoutes = require("./routes/notificationRoutes");
 
@@ -12,9 +13,10 @@ app.use(
     origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 app.use(express.json());
+app.use(cookieParser());
 
 // Health check route
 app.get("/health", (req, res) => res.json({ status: "ok" }));
@@ -26,7 +28,7 @@ const startServer = async () => {
   await connectDB();
   const port = process.env.PORT || 4001;
   app.listen(port, () =>
-    console.log(`Notification service running on port ${port}`)
+    console.log(`Notification service running on port ${port}`),
   );
 };
 

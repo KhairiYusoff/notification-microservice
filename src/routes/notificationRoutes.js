@@ -1,19 +1,21 @@
-const express = require('express');
-const { apiKeyAuth } = require('../middleware/auth');
-const notificationController = require('../controllers/notificationController');
+const express = require("express");
+const { apiKeyAuth, jwtAuth } = require("../middleware/auth");
+const notificationAccess = require("../middleware/notificationAccess");
+const notificationController = require("../controllers/notificationController");
 
 const router = express.Router();
 
-// Create notification
-router.post('/', apiKeyAuth, notificationController.createNotification);
+router.post("/", apiKeyAuth, notificationController.createNotification);
 
-// Get notifications (filter by recipient, type, etc. via query)
-router.get('/', apiKeyAuth, notificationController.getNotifications);
+router.get(
+  "/",
+  jwtAuth,
+  notificationAccess,
+  notificationController.getNotifications,
+);
 
-// Mark notification as read/unread
-router.patch('/:id', apiKeyAuth, notificationController.updateNotification);
+router.patch("/:id", jwtAuth, notificationController.updateNotification);
 
-// Delete notification
-router.delete('/:id', apiKeyAuth, notificationController.deleteNotification);
+router.delete("/:id", jwtAuth, notificationController.deleteNotification);
 
 module.exports = router;
