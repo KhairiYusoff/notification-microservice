@@ -25,7 +25,8 @@ function jwtAuth(req, res, next) {
   
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach user info to request
+    // Support both nested { user: { id, role } } and flat { id, role } structures
+    req.user = decoded.user || decoded; 
     req.authType = 'user'; // Set auth type for access control
     return next();
   } catch (err) {
